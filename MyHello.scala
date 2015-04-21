@@ -38,7 +38,6 @@ class MySubPoint(xc: Int, yc: Int, zc: Int) extends MyPoint(xc, yc)
     override def toString(): String = "[" + xcc + "," + ycc + "]"
 }
 
-
 object Main 
 {
     def main(args: Array[String])
@@ -53,5 +52,56 @@ object Main
         println(subpt);
         subpt.move(5, 5);
         println(subpt);
+        
+        var myArray: Array[Int] = new Array[Int](5)
+        myArray(0) = 9;
+        myArray(1) = 1;
+        myArray(2) = 7;
+        myArray(3) = 4;
+        myArray(4) = 2;
+
+        sort(myArray)
+        for(c <- 0 until myArray.length)
+        {
+            println("Array[" + c + "]=" + myArray(c))
+        }
+
+    }
+    def sort(xs: Array[Int])
+    {
+        def swap(i: Int, j: Int) {
+            val t = xs(i); xs(i) = xs(j); xs(j) = t
+        }
+        def printArray(xs: Array[Int]) {
+            for(c <- 0 until xs.length)
+                println("Array[" + c + "]=" + xs(c))
+        }
+        def partition(l:Int, r:Int) : Int = 
+        {
+            val pivot = xs(r)
+            var big = 0
+            var curr = 0
+            while(curr < xs.length)
+            {
+                if(xs(curr) < pivot)
+                {
+                    swap(big, curr)
+                    big += 1
+                }
+                curr += 1
+            }
+            swap(big, r)
+            return big
+        }
+        def Quicksort(l:Int, r:Int)
+        {
+            if(l < r)
+            {
+                var pivotIndex = partition(l, r)
+                if(l < pivotIndex) Quicksort(l, pivotIndex-1)
+                if(pivotIndex < r) Quicksort(pivotIndex+1, r)
+            }
+        }
+        Quicksort(0, xs.length-1)
     }
 }
