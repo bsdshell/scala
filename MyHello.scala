@@ -65,8 +65,15 @@ object Main
         {
             println("Array[" + c + "]=" + myArray(c))
         }
+        println(sum(x=>2*x)(10, 20))
 
     }
+    //This is called currying function
+    def sum(f: Int=>Int)(a:Int, b:Int): Int = 
+    {
+        if(a > b) 0 else f(a) + sum(f)(a+1, b)
+    }
+
     def sort(xs: Array[Int])
     {
         def swap(i: Int, j: Int) {
@@ -104,4 +111,5 @@ object Main
         }
         Quicksort(0, xs.length-1)
     }
+    
 }
