@@ -111,5 +111,4 @@ object Main
         }
         Quicksort(0, xs.length-1)
     }
-    
 }

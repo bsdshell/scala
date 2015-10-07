@@ -107,7 +107,7 @@ object Main
         else{
             val pivot = xs(xs.length/2)
             Array.concat(
-                sortfun(xs filter (pivot > )),
+                sortfun(xs filter (pivot < )),
                 sortfun(xs filter (pivot == )),
                 sortfun(xs filter (pivot > ))
             )
