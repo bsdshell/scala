@@ -7,9 +7,13 @@ GET     /                           controllers.Application.index
 
 POST    /person                     controllers.Application.addPerson
 
-GET    /persons                    controllers.Application.getPersons
+GET    /persons                     controllers.Application.getPersons
 
 GET    /display                     controllers.Application.display
+
+POST   /postcode                    controllers.Application.postCode
+
+GET    /getcode                     controllers.Application.getCode
 
 POST   /upload                      controllers.Application.upload
 

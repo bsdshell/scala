@@ -1,6 +1,5 @@
 package controllers
-
-import model.{DB, Person}
+import model.{Code, DB, Person}
 import play.api.data.Form
 import play.api.data.Forms._
 import play.api.mvc._
@@ -13,10 +12,16 @@ object Application extends Controller {
     Ok(views.html.index("Scala sucks"))
   }
 
-  val personForm: Form[Person] = Form{
+  val whatForm: Form[Person] = Form{
     mapping(
     "name" -> text
     )(Person.apply)(Person.unapply)
+  }
+
+  val codeForm: Form[Code] = Form{
+    mapping(
+    "name" -> text
+    )(Code.apply)(Code.unapply)
   }
 
   def display = Action{
@@ -24,9 +29,29 @@ object Application extends Controller {
       Ok("cool")
   }
 
+  def getImages(imgName:String) = Action {
+    implicit request =>
+    Ok("getImages")
+  }
+
+  def postCode = Action{
+    implicit request =>
+      val what = codeForm.bindFromRequest.get
+      DB.save(what)
+      Redirect(routes.Application.display)
+      //Ok(Json.toJson(code))
+  }
+
+  def getCode = Action {
+    implicit request =>
+      val code = DB.query[Code].fetch
+      Ok("getCode get called")
+      Ok(Json.toJson(code))
+  }
+
   def addPerson = Action {
     implicit request =>
-    val person = personForm.bindFromRequest.get
+    val person = whatForm.bindFromRequest.get
     DB.save(person)
       Redirect(routes.Application.display)
   }
@@ -51,7 +76,4 @@ object Application extends Controller {
       )
     }
   }
-
-
-
 }

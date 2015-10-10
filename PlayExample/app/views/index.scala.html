@@ -1,11 +1,18 @@
 @(message: String)
 
-@main("Welcome to Play") {
+
+
 
 <form action="@routes.Application.addPerson()" method="post">
     <input name="name" type="text">
     <button>Add Person</button>
 </form>
+
+<form action="@routes.Application.postCode()" method="post">
+    <input name="name" type="text">
+    <button>Post Code</button>
+</form>
+
 
 
 @helper.form(action = routes.Application.upload, 'enctype -> "multipart/form-data", 'multiple -> "") {
@@ -18,5 +25,5 @@
 
 }
 
-}
+
 
