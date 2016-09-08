@@ -1,9 +1,7 @@
 import language.postfixOps
 
-object Main 
-{
-    def main(args: Array[String])
-    {
+object Main {
+    def main(args: Array[String]) {
         test1
         test2
         test3
@@ -17,8 +15,7 @@ object Main
         var j = 0
         var k = 0
         var xs3: Array[Int] = new Array[Int](len1+len2) 
-        while(i < len1 || j < len2)
-        {
+        while(i < len1 || j < len2) {
             if(i >= len1){ 
                 xs3(k) = xs2(j) 
                 j += 1
@@ -63,5 +60,4 @@ object Main
         for(c <- 0 until list.length)
             println("list[" + c + "]=" + list(c))
     }
-
 }

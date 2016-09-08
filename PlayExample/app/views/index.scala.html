@@ -1,16 +1,9 @@
 @(message: String)
 
-
-
-
-<form action="@routes.Application.addPerson()" method="post">
-    <input name="name" type="text">
-    <button>Add Person</button>
-</form>
-
 <form action="@routes.Application.postCode()" method="post">
-    <input name="name" type="text">
-    <button>Post Code</button>
+    <textarea name="name" col2="20" rows="30" ></textarea>
+    <input name="name2" type="text">
+    <input type="submit">
 </form>
 
 
@@ -18,7 +11,6 @@
 @helper.form(action = routes.Application.upload, 'enctype -> "multipart/form-data", 'multiple -> "") {
 
 <input type="file" name="picture" multiple="">
-
 <p>
     <input type="submit">
 </p>

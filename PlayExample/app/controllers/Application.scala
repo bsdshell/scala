@@ -20,7 +20,8 @@ object Application extends Controller {
 
   val codeForm: Form[Code] = Form{
     mapping(
-    "name" -> text
+    "name" -> text,
+    "name2 " -> text
     )(Code.apply)(Code.unapply)
   }
 
@@ -36,8 +37,8 @@ object Application extends Controller {
 
   def postCode = Action{
     implicit request =>
-      val what = codeForm.bindFromRequest.get
-      DB.save(what)
+      val code = codeForm.bindFromRequest.get
+      Ok("mycode")
       Redirect(routes.Application.display)
       //Ok(Json.toJson(code))
   }
@@ -45,7 +46,6 @@ object Application extends Controller {
   def getCode = Action {
     implicit request =>
       val code = DB.query[Code].fetch
-      Ok("getCode get called")
       Ok(Json.toJson(code))
   }
 
